@@ -1,8 +1,8 @@
 # 📰 Fake News Detection using Machine Learning
 
-A Machine Learning and Natural Language Processing (NLP) based web application that detects whether a news article is **Real** or **Fake**.
+A Machine Learning and Natural Language Processing (NLP) based web application that classifies news articles as **Real** or **Fake** using **TF-IDF Vectorization** and a **Passive Aggressive Classifier**.
 
-The project uses **TF-IDF Vectorization** for text feature extraction and a **Passive Aggressive Classifier** for classification. A **Flask web application** is integrated with the trained model to provide real-time predictions through a user-friendly interface.
+The trained Machine Learning model is integrated with a **Flask web application** to provide real-time predictions through a simple and user-friendly interface.
 
 ---
 
@@ -38,9 +38,9 @@ Fake news and misinformation have become significant challenges in the digital i
 
 This project demonstrates how Machine Learning and Natural Language Processing can be used to analyse textual news content and classify it as **Real** or **Fake**.
 
-The system processes the news text, extracts important features using **TF-IDF**, and uses a **Passive Aggressive Classifier** to generate the prediction.
+The system processes news text, extracts important features using **TF-IDF**, and uses a **Passive Aggressive Classifier** to generate the prediction.
 
-The trained Machine Learning model is integrated with a **Flask backend**, allowing users to submit news content and receive a classification result in real time.
+The trained model is integrated with a **Flask backend**, allowing users to submit news content and receive a classification result in real time.
 
 > **Note:** This system provides a machine-learning classification and should not be considered a replacement for independent fact-checking.
 
@@ -52,7 +52,7 @@ The objective of this project is to develop an automated system that can classif
 
 ### Input
 
-The system can process information such as:
+The system processes:
 
 - News headline
 - Author
@@ -146,320 +146,362 @@ The main objectives of this project are:
 
 The complete system follows this workflow:
 
-News Dataset  
+**News Dataset**  
 ↓  
-Data Preprocessing  
+**Data Preprocessing**  
 ↓  
-Text Processing  
+**Text Processing**  
 ↓  
-TF-IDF Vectorization  
+**TF-IDF Vectorization**  
 ↓  
-Passive Aggressive Classifier  
+**Passive Aggressive Classifier**  
 ↓  
-Model Training  
+**Model Training**  
 ↓  
-Saved Model & Vectorizer  
+**Saved Model and Vectorizer**  
 ↓  
-Flask Backend  
+**Flask Backend**  
 ↓  
-Web Interface  
+**Web Interface**  
 ↓  
-REAL / FAKE Prediction
+**REAL / FAKE Prediction**
 
 ---
 
 ## 📂 Project Structure
 
-```text
-Fake-News-Detection-using-Machine-Learning/
-│
-├── Images/
-│   ├── BlockDiagram.jpg
-│   ├── Processflow.jpg
-│   └── ConfusionMatrix.jpg
-│
-├── dataset/
-│   ├── train.csv
-│   └── test.csv
-│
-├── static/
-│   ├── css/
-│   ├── js/
-│   └── images/
-│
-├── templates/
-│   ├── Landingpage.html
-│   └── prediction page.html
-│
-├── Fake_News_Detector-PA.ipynb
-├── app.py
-├── model.pkl
-├── vector.pkl
-├── requirements.txt
-└── README.md
-📊 Dataset
+The repository contains the following main components:
+
+- 📁 **Images** — Block diagram, process flow and confusion matrix
+- 📁 **dataset** — Training and testing datasets
+- 📁 **static** — CSS, JavaScript and UI assets
+- 📁 **templates** — HTML templates for the web application
+- 📓 **Fake_News_Detector-PA.ipynb** — Jupyter Notebook for preprocessing, analysis and model training
+- 🐍 **app.py** — Flask application
+- 🤖 **model.pkl** — Trained Passive Aggressive Classifier
+- 🔤 **vector.pkl** — Trained TF-IDF Vectorizer
+- 📦 **requirements.txt** — Python dependencies
+- 📄 **README.md** — Project documentation
+
+---
+
+## 📊 Dataset
 
 The project uses a labelled news dataset containing real and fake news articles.
 
-Training Dataset
+### Training Dataset
 
 The training dataset is stored in:
 
-dataset/train.csv
+`dataset/train.csv`
 
 Important attributes include:
 
-Column	Description
-id	Unique identifier
-title	News headline
-author	Article author
-text	Main article content
-label	Classification label
-Label Encoding
-Label	Meaning
-0	Real / Reliable
-1	Fake / Unreliable
-Testing Dataset
+| Column | Description |
+|---|---|
+| `id` | Unique identifier |
+| `title` | News headline |
+| `author` | Article author |
+| `text` | Main article content |
+| `label` | Classification label |
+
+### Label Encoding
+
+| Label | Meaning |
+|---|---|
+| `0` | Real / Reliable |
+| `1` | Fake / Unreliable |
+
+### Testing Dataset
 
 The testing dataset is stored in:
 
-dataset/test.csv
+`dataset/test.csv`
 
 It contains news articles used for testing and generating predictions.
 
-🔄 Machine Learning Workflow
-1. Data Collection
+---
+
+## 🔄 Machine Learning Workflow
+
+### 1. Data Collection
 
 The labelled news dataset is loaded using Pandas.
 
-2. Data Preprocessing
+### 2. Data Preprocessing
 
 The textual data is cleaned and prepared for Machine Learning.
 
-This stage includes:
+This includes:
 
-Handling missing values
-Preparing news text
-Cleaning unnecessary information
-Combining relevant textual features
-3. Feature Extraction
+- Handling missing values
+- Preparing news text
+- Cleaning unnecessary information
+- Preparing text for feature extraction
 
-The project uses TF-IDF Vectorization to convert textual information into numerical feature vectors.
+### 3. Feature Extraction
 
-4. Model Training
+The project uses **TF-IDF Vectorization** to convert textual information into numerical feature vectors.
 
-The transformed text features are passed to the Passive Aggressive Classifier for training.
+### 4. Model Training
 
-5. Model Evaluation
+The transformed text features are provided to the **Passive Aggressive Classifier** for training.
+
+### 5. Model Evaluation
 
 The trained model is evaluated using classification metrics and a confusion matrix.
 
-6. Model Serialization
+### 6. Model Serialization
 
 The trained classifier is stored in:
 
-model.pkl
+`model.pkl`
 
 The trained TF-IDF vectorizer is stored in:
 
-vector.pkl
+`vector.pkl`
 
-7. Deployment
+### 7. Deployment
 
 The saved model and vectorizer are loaded into the Flask application.
 
-8. Prediction
+### 8. Prediction
 
-The user enters news content through the web application, which processes the input and returns the predicted classification.
+The user enters news content through the web application and receives the predicted classification.
 
-🤖 Model
-Passive Aggressive Classifier
+---
 
-The project uses the Passive Aggressive Classifier, an online learning algorithm suitable for text classification.
+## 🤖 Model
+
+### Passive Aggressive Classifier
+
+The project uses the **Passive Aggressive Classifier**, an online learning algorithm suitable for text classification.
 
 The classifier updates its parameters when a prediction is incorrect while remaining relatively unchanged when predictions are correct.
 
-TF-IDF Vectorizer
+### TF-IDF Vectorizer
 
-TF-IDF stands for Term Frequency-Inverse Document Frequency.
+TF-IDF stands for **Term Frequency-Inverse Document Frequency**.
 
 It converts text into numerical feature vectors based on the importance of words within the dataset.
 
-The prediction pipeline is:
+### Prediction Pipeline
 
-News Text → Preprocessing → TF-IDF → Classifier → Prediction
+**News Text → Text Preprocessing → TF-IDF → Passive Aggressive Classifier → Prediction**
 
-📈 Performance
+---
+
+## 📈 Performance
 
 The Passive Aggressive Classifier achieved approximately:
 
-~96% Accuracy
+### **~96% Accuracy**
 
 on the validation data used during project development.
 
-The project also includes a Confusion Matrix to visualize classification results.
+The project also includes a **Confusion Matrix** to visualize classification results.
 
-Actual performance may vary depending on dataset splitting, preprocessing, and model configuration.
+Actual performance may vary depending on dataset splitting, preprocessing and model configuration.
 
-🌐 Web Application
+---
+
+## 🌐 Web Application
 
 The project includes a Flask-based web application for real-time prediction.
 
-Application Workflow
+### Application Workflow
 
-User Input
-↓
-Flask Backend
-↓
-Text Processing
-↓
-TF-IDF Vectorization
-↓
-Passive Aggressive Classifier
-↓
-Prediction
-↓
-REAL / FAKE
+**User Input**  
+↓  
+**Flask Backend**  
+↓  
+**Text Processing**  
+↓  
+**TF-IDF Vectorization**  
+↓  
+**Passive Aggressive Classifier**  
+↓  
+**Prediction**  
+↓  
+**REAL / FAKE**
 
 The Flask backend is implemented in:
 
-app.py
+`app.py`
 
-⚙️ Installation
-1. Clone the Repository
-git clone https://github.com/prashant-00-22/Fake-News-Detection-using-Machine-Learning.git
-2. Navigate to the Project
-cd Fake-News-Detection-using-Machine-Learning
-3. Create a Virtual Environment
+---
 
-For Windows:
+## ⚙️ Installation
 
-python -m venv my_env
+### 1. Clone the Repository
+
+Use the following command:
+
+`git clone https://github.com/prashant-00-22/Fake-News-Detection-using-Machine-Learning.git`
+
+### 2. Navigate to the Project
+
+`cd Fake-News-Detection-using-Machine-Learning`
+
+### 3. Create a Virtual Environment
+
+Windows:
+
+`python -m venv my_env`
 
 Activate the environment:
 
-.\my_env\Scripts\Activate.ps1
-4. Install Dependencies
-pip install -r requirements.txt
+`.\my_env\Scripts\Activate.ps1`
 
-If requirements.txt is not available:
+### 4. Install Dependencies
 
-pip install flask pandas numpy scikit-learn
-▶️ Usage
+`pip install -r requirements.txt`
+
+If `requirements.txt` is not available:
+
+`pip install flask pandas numpy scikit-learn`
+
+---
+
+## ▶️ Usage
 
 Start the Flask application:
 
-python app.py
+`python app.py`
 
-After the application starts, open the following address in your browser:
+After the application starts, open:
 
-http://127.0.0.1:5000/
+`http://127.0.0.1:5000/`
 
 You can also use:
 
-http://localhost:5000/
+`http://localhost:5000/`
 
-Enter the news content into the application and submit it for classification.
+Enter the news content into the web application and submit it for classification.
 
 The application will return:
 
-REAL
+**REAL**
 
 or
 
-FAKE
+**FAKE**
 
-🖼️ Visualizations
+---
+
+## 🖼️ Visualizations
 
 The repository contains visual documentation and model evaluation images.
 
-Block Diagram
+### Block Diagram
 
-Images/BlockDiagram.jpg
+`Images/BlockDiagram.jpg`
 
-Process Flow Diagram
+### Process Flow Diagram
 
-Images/Processflow.jpg
+`Images/Processflow.jpg`
 
-Confusion Matrix
+### Confusion Matrix
 
-Images/ConfusionMatrix.jpg
+`Images/ConfusionMatrix.jpg`
 
-📸 Screenshots
+---
 
-Application screenshots can be added to this section.
+## 📸 Screenshots
+
+Screenshots of the application can be added to this section.
 
 For example:
 
-![Landing Page](Images/LandingPage.png)
+`Images/LandingPage.png`
 
-![Prediction Page](Images/PredictionPage.png)
+`Images/PredictionPage.png`
 
-Make sure the image filenames match the files available in the repository.
+Make sure the filenames match the actual files present in the repository.
 
-🔮 Future Improvements
+---
+
+## 🔮 Future Improvements
 
 The project can be further enhanced with:
 
-🤖 BERT and Transformer-based models
-🧠 Deep Learning based classification
-🌍 Multilingual fake news detection
-🔗 URL-based news extraction
-📰 Real-time news API integration
-📊 Prediction confidence score
-🔍 Explainable AI
-👤 User authentication
-🗃️ Prediction history
-🐳 Docker deployment
-☁️ Cloud deployment
-🔐 Secure REST API
-💡 Applications
+- 🤖 BERT and Transformer-based models
+- 🧠 Deep Learning based classification
+- 🌍 Multilingual fake news detection
+- 🔗 URL-based news extraction
+- 📰 Real-time news API integration
+- 📊 Prediction confidence score
+- 🔍 Explainable AI
+- 👤 User authentication
+- 🗃️ Prediction history
+- 🐳 Docker deployment
+- ☁️ Cloud deployment
+- 🔐 Secure REST API
+
+---
+
+## 💡 Applications
 
 Potential applications of the system include:
 
-Content moderation
-News analysis
-Social media monitoring
-Misinformation screening
-Educational NLP projects
-Machine Learning research
-Automated text classification
-Information quality analysis
+- Content moderation
+- News analysis
+- Social media monitoring
+- Misinformation screening
+- Educational NLP projects
+- Machine Learning research
+- Automated text classification
+- Information quality analysis
 
-The system is intended as a screening and classification tool, not as a definitive fact-checking system.
+The system is intended as a **screening and classification tool**, not as a definitive fact-checking system.
 
-📚 Learning Outcomes
+---
+
+## 📚 Learning Outcomes
 
 This project provided practical experience with:
 
-Machine Learning
-Natural Language Processing
-Text Classification
-TF-IDF Feature Extraction
-Passive Aggressive Classification
-Model Evaluation
-Confusion Matrix
-Flask Development
-Python Programming
-Model Serialization
-Git and GitHub
-Machine Learning Deployment
-👨‍💻 Author
+- Machine Learning
+- Natural Language Processing
+- Text Classification
+- TF-IDF Feature Extraction
+- Passive Aggressive Classification
+- Model Evaluation
+- Confusion Matrix
+- Flask Development
+- Python Programming
+- Model Serialization
+- Git and GitHub
+- Machine Learning Deployment
 
-Prashant
+---
 
-GitHub:
+## 👨‍💻 Author
+
+### Prashant
+
+**GitHub:**  
 https://github.com/prashant-00-22
 
-Email:
+**Email:**  
 prashantsharma0422@gmail.com
 
-⭐ Support
+---
+
+## ⭐ Support
 
 If you find this project useful or interesting, consider giving the repository a ⭐ on GitHub.
 
 Your support and feedback are appreciated!
 
-📄 License
+---
 
-This project is developed for educational, learning, and development purposes.
+## 📄 License
+
+This project is developed for **educational, learning, and development purposes**.
+
+---
+
+## 🚀 Project Summary
+
+This project demonstrates how a Machine Learning and NLP-based application can be designed, developed, integrated, tested and deployed as a complete web-based system.
